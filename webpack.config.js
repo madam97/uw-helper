@@ -5,7 +5,7 @@ require('@babel/register');
 
 module.exports = env => {
   return {
-    entry: './src/index.js',
+    entry: './src/index.ts',
     output: {
       path: path.resolve(__dirname, 'dist/'),
       filename: 'bundle.js'
@@ -13,16 +13,21 @@ module.exports = env => {
     devtool: 'source-map',
 
     module: {
-      rules: [{
-        test: /\.js$/,
-        exclude: /node_modules/,
-        use: ['babel-loader']
-      }, {
-        test: /\.css$/,
-        exclude: /node_modules/,
-        use: ['style-loader', 'css-loader']
-      }]
+      rules: [
+        {
+          test: /\.ts$/,
+          exclude: /node_modules/,
+          use: ['babel-loader']
+        },
+        {
+          test: /\.css$/,
+          exclude: /node_modules/,
+          use: ['style-loader', 'css-loader']
+        }
+      ]
     },
+
+    resolve: { extensions: ['.js', '.jsx', '.tsx', '.ts', '.json'] },
 
     plugins: [
       new htmlWebpackPlugin({
