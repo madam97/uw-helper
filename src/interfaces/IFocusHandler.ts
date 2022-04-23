@@ -16,6 +16,11 @@ interface IFocusHandler {
   elements: NodeListOf<Element>,
 
   /**
+   * After a default focus event triggered, sets the element to be the current focused element if the element can be focused by a selector
+   */
+  handleFocus: () => void,
+
+  /**
    * Chooses the next focused element that is before or after the current focused element
    * @param {THotkey} hotkey
    * @param {TDirection} direction
@@ -25,8 +30,9 @@ interface IFocusHandler {
   /**
    * Changes the current focused element and sets the CSS class
    * @param {Element | null} newFocusedElement
+   * @param {boolean} [willFocus] If true, will trigger focus event on the new focused element
    */
-  changeFocusedElement: (newFocusedElement: Element | null) => void
+  changeFocusedElement: (newFocusedElement: Element | null, willFocus?: boolean) => void
 }
 
 export default IFocusHandler;

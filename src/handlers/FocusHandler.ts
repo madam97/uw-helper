@@ -30,6 +30,19 @@ class FocusHandler implements IFocusHandler {
 
     this.focusedElement = null;
     this.elements = document.querySelectorAll(this.querySelector);
+
+    window.addEventListener('focus', this.handleFocus.bind(this), true);
+  }
+
+  handleFocus(): void {
+    if (document.activeElement) {
+      for (const selector of Object.values(this.selectors)) {
+        if (selector.checkElement(document.activeElement)) {
+          this.changeFocusedElement(document.activeElement, false);
+          break;
+        }
+      }
+    }
   }
 
   move(hotkey: THotkey, direction: TDirection): void {
@@ -73,14 +86,16 @@ class FocusHandler implements IFocusHandler {
     this.changeFocusedElement(newFocusedElement ?? firstElement);
   }
 
-  changeFocusedElement(newFocusedElement: Element | null): void {
+  changeFocusedElement(newFocusedElement: Element | null, willFocus: boolean = false): void {
     if (this.focusedElement !== null) {
       this.focusedElement.classList.remove('uw-helper-focused');
     }
     if (newFocusedElement !== null) {
       newFocusedElement.classList.add('uw-helper-focused');
 
-      (newFocusedElement as HTMLElement).focus();
+      if (willFocus) {
+        (newFocusedElement as HTMLElement).focus();
+      }
     }
 
     this.focusedElement = newFocusedElement;
