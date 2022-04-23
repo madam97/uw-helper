@@ -1,10 +1,11 @@
 import ISelector from '../interfaces/ISelector';
 
 class SelectorLandmark implements ISelector {
-  readonly querySelector: string = 'header,main,footer,section,aside,nav,form,[role]';
+  readonly querySelector: string = 'article,aside,details,figcaption,figure,footer,header,main,mark,nav,section,summary,time,[role]';
+  readonly tagNames: string[] = ['article','aside','details','figcaption','figure','footer','header','main','mark','nav','section','summary','time'];
 
   checkElement(element: Element): boolean {
-    return ['HEADER', 'MAIN', 'FOOTER', 'SECTION', 'ASIDE', 'NAV', 'FORM'].includes(element.tagName);
+    return this.tagNames.includes( element.tagName.toLowerCase() ) || element.hasAttribute('role');
   }
 }
 
