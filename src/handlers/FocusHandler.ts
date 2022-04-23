@@ -70,7 +70,20 @@ class FocusHandler implements IFocusHandler {
       }
     }
 
-    this.focusedElement = newFocusedElement !== null ? newFocusedElement : firstElement;
+    this.changeFocusedElement(newFocusedElement ?? firstElement);
+  }
+
+  changeFocusedElement(newFocusedElement: Element | null): void {
+    if (this.focusedElement !== null) {
+      this.focusedElement.classList.remove('uw-helper-focused');
+    }
+    if (newFocusedElement !== null) {
+      newFocusedElement.classList.add('uw-helper-focused');
+
+      (newFocusedElement as HTMLElement).focus();
+    }
+
+    this.focusedElement = newFocusedElement;
 
     console.log(this.focusedElement);
   }

@@ -8,7 +8,8 @@ interface IFocusHandler {
   focusedElement: Element | null,
   elements: NodeListOf<Element>,
 
-  move: (hotkey: THotkey, direction: TDirection) => void
+  move: (hotkey: THotkey, direction: TDirection) => void,
+  changeFocusedElement: (newFocusedElement: Element | null) => void
 }
 
 export default IFocusHandler;
