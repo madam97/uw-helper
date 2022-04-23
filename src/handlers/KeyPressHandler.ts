@@ -20,6 +20,10 @@ class KeyPressHandler implements IKeyPressHandler {
    * @param {KeyboardEvent} e 
    */
   handleKeyDown(e: KeyboardEvent): void {
+    if (this.willIgnoreKeyPress()) {
+      return;
+    }
+
     switch (e.code) {
       // Moves focus
       case 'KeyH':
@@ -37,6 +41,14 @@ class KeyPressHandler implements IKeyPressHandler {
         this.setDirection(1);
         break;
     }
+  }
+
+  /**
+   * Returns true if the active element is an input or textarea
+   * @returns {boolean}
+   */
+  willIgnoreKeyPress(): boolean {
+    return document.activeElement?.tagName === 'INPUT' || document.activeElement?.tagName === 'TEXTAREA';
   }
 
   /**

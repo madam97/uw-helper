@@ -7,6 +7,7 @@ interface IKeyPressHandler {
 
   constructor: Function,
   handleKeyDown: (e: KeyboardEvent) => void,
+  willIgnoreKeyPress: () => boolean,
   setDirection: (direction: TDirection) => void
 }
 
