@@ -1,0 +1,33 @@
+{
+  "name": "uw-helper",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./dist/index.js",
+  "scripts": {
+    "start": "webpack-dev-server --open --mode development --port 3000",
+    "build": "webpack --mode production"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/madam97/uw-helper.git"
+  },
+  "author": "Adam Mézes",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/madam97/uw-helper/issues"
+  },
+  "homepage": "https://github.com/madam97/uw-helper#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.17.6",
+    "@babel/core": "^7.17.9",
+    "@babel/preset-env": "^7.16.11",
+    "@babel/register": "^7.17.7",
+    "babel-loader": "^8.2.5",
+    "css-loader": "^6.7.1",
+    "html-webpack-plugin": "^5.5.0",
+    "style-loader": "^3.3.1",
+    "webpack": "^5.72.0",
+    "webpack-cli": "^4.9.2",
+    "webpack-dev-server": "^4.8.1"
+  }
+}
