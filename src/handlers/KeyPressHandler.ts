@@ -15,10 +15,6 @@ class KeyPressHandler implements IKeyPressHandler {
     document.addEventListener('keydown', this.handleKeyDown.bind(this));
   }
 
-  /**
-   * After a key was pressed moves the focus up/down or changes the direction of the focus movement
-   * @param {KeyboardEvent} e 
-   */
   handleKeyDown(e: KeyboardEvent): void {
     if (this.willIgnoreKeyPress()) {
       return;
@@ -43,18 +39,10 @@ class KeyPressHandler implements IKeyPressHandler {
     }
   }
 
-  /**
-   * Returns true if the active element is an input or textarea
-   * @returns {boolean}
-   */
   willIgnoreKeyPress(): boolean {
     return document.activeElement?.tagName === 'INPUT' || document.activeElement?.tagName === 'TEXTAREA';
   }
 
-  /**
-   * Changes the direction of the focus movement
-   * @param {TDirection} direction
-   */
   setDirection(direction: TDirection): void {
     this.direction = direction;
   }
