@@ -86,7 +86,7 @@ class FocusHandler implements IFocusHandler {
     this.changeFocusedElement(newFocusedElement ?? firstElement);
   }
 
-  changeFocusedElement(newFocusedElement: Element | null, willFocus: boolean = false): void {
+  changeFocusedElement(newFocusedElement: Element | null, willFocus: boolean = true): void {
     if (this.focusedElement !== null) {
       this.focusedElement.classList.remove('uw-helper-focused');
     }
