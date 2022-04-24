@@ -31,18 +31,22 @@ class FocusHandler implements IFocusHandler {
     this.focusedElement = null;
     this.elements = document.querySelectorAll(this.querySelector);
 
-    window.addEventListener('focus', this.handleFocus.bind(this), true);
+    window.addEventListener('blur', this.blurFocusedElement.bind(this), true);
   }
 
-  handleFocus(): void {
+  moveToActiveElement(): void {
+    let element: Element | null = null;
+
     if (document.activeElement) {
       for (const selector of Object.values(this.selectors)) {
         if (selector.checkElement(document.activeElement)) {
-          this.changeFocusedElement(document.activeElement, false);
+          element = document.activeElement;
           break;
         }
       }
     }
+
+    this.changeFocusedElement(element, false);
   }
 
   move(hotkey: THotkey, direction: TDirection): void {
@@ -87,20 +91,29 @@ class FocusHandler implements IFocusHandler {
   }
 
   changeFocusedElement(newFocusedElement: Element | null, willFocus: boolean = true): void {
-    if (this.focusedElement !== null) {
-      this.focusedElement.classList.remove('uw-helper-focused');
+    if (document.activeElement) {
+      (document.activeElement as HTMLElement).blur();
     }
+
+    this.blurFocusedElement();
+
     if (newFocusedElement !== null) {
       newFocusedElement.classList.add('uw-helper-focused');
 
       if (willFocus) {
         (newFocusedElement as HTMLElement).focus();
+        newFocusedElement.scrollIntoView();
       }
     }
 
     this.focusedElement = newFocusedElement;
+  }
 
-    console.log(this.focusedElement);
+  blurFocusedElement(): void {
+    if (this.focusedElement !== null) {
+      this.focusedElement.classList.remove('uw-helper-focused');
+      this.focusedElement = null;
+    }
   }
 }
 

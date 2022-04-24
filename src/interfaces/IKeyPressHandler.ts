@@ -12,7 +12,7 @@ interface IKeyPressHandler {
    * After a key was pressed moves the focus up/down or changes the direction of the focus movement
    * @param {KeyboardEvent} e 
    */
-  handleKeyDown: (e: KeyboardEvent) => void,
+  handleKeyUp: (e: KeyboardEvent) => void,
 
   /**
    * Returns true if the active element is an input or textarea

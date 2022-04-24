@@ -12,11 +12,12 @@ class KeyPressHandler implements IKeyPressHandler {
     this.direction = 1,
     this.focusHandler = new FocusHandler();
 
-    document.addEventListener('keydown', this.handleKeyDown.bind(this));
+    document.addEventListener('keyup', this.handleKeyUp.bind(this));
   }
 
-  handleKeyDown(e: KeyboardEvent): void {
+  handleKeyUp(e: KeyboardEvent): void {
     if (this.willIgnoreKeyPress()) {
+      this.focusHandler.blurFocusedElement();
       return;
     }
 
@@ -25,15 +26,26 @@ class KeyPressHandler implements IKeyPressHandler {
       case 'KeyH':
       case 'KeyL':
       case 'KeyM':
+        e.preventDefault();
+
         const hotkey = e.code.replace(/key/i, '').toUpperCase() as THotkey;
         this.focusHandler.move(hotkey, this.direction);
+        break;
+
+      // Removes focus
+      case 'Tab':
+        this.focusHandler.moveToActiveElement();
         break;
       
       // Changes the direction of the focus movement
       case 'ArrowUp':
+        e.preventDefault();
+
         this.setDirection(-1);
         break;
       case 'ArrowDown':
+        e.preventDefault();
+
         this.setDirection(1);
         break;
     }
