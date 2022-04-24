@@ -1,5 +1,5 @@
-import KeyPressHandler from './handlers/KeyPressHandler';
+import HandlerKeyPress from './handlers/HandlerKeyPress';
 import './style.css';
 
 console.log('Starting UW Helper...');
-const keyPressHandler = new KeyPressHandler();
+const handlerKeyPress = new HandlerKeyPress();

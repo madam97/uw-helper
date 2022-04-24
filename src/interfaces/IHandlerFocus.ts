@@ -2,7 +2,7 @@ import TDirection from '../types/TDirection';
 import THotkey from '../types/THotkey';
 import ISelector from './ISelector';
 
-interface IFocusHandler {
+interface IHandlerFocus {
   /** The ojects that decides the next focused element based on the pressed key */
   readonly selectors: Record<THotkey, ISelector>,
 
@@ -40,4 +40,4 @@ interface IFocusHandler {
   blurFocusedElement: () => void
 }
 
-export default IFocusHandler;
+export default IHandlerFocus;

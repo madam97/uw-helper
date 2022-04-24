@@ -1,12 +1,12 @@
-import IFocusHandler from './IFocusHandler';
+import IHandlerFocus from './IHandlerFocus';
 import TDirection from '../types/TDirection';
 
-interface IKeyPressHandler {
+interface IHandlerKeyPress {
   /** Direction of the focus movement */
   direction: TDirection,
 
   /** The object that handles focusing on elements */
-  focusHandler: IFocusHandler,
+  handlerFocus: IHandlerFocus,
 
   /**
    * After a key was pressed moves the focus up/down or changes the direction of the focus movement
@@ -27,4 +27,4 @@ interface IKeyPressHandler {
   setDirection: (direction: TDirection) => void
 }
 
-export default IKeyPressHandler;
+export default IHandlerKeyPress;

@@ -1,23 +1,23 @@
-import IFocusHandler from '../interfaces/IFocusHandler';
-import IKeyPressHandler from '../interfaces/IKeyPressHandler';
+import IHandlerFocus from '../interfaces/IHandlerFocus';
+import IHandlerKeyPress from '../interfaces/IHandlerKeyPress';
 import TDirection from '../types/TDirection';
 import THotkey from '../types/THotkey';
-import FocusHandler from './FocusHandler';
+import HandlerFocus from './HandlerFocus';
 
-class KeyPressHandler implements IKeyPressHandler {
+class HandlerKeyPress implements IHandlerKeyPress {
   direction: TDirection;
-  focusHandler: IFocusHandler;
+  handlerFocus: IHandlerFocus;
 
   constructor() {
     this.direction = 1,
-    this.focusHandler = new FocusHandler();
+    this.handlerFocus = new HandlerFocus();
 
     document.addEventListener('keyup', this.handleKeyUp.bind(this));
   }
 
   handleKeyUp(e: KeyboardEvent): void {
     if (this.willIgnoreKeyPress()) {
-      this.focusHandler.blurFocusedElement();
+      this.handlerFocus.blurFocusedElement();
       return;
     }
 
@@ -29,12 +29,12 @@ class KeyPressHandler implements IKeyPressHandler {
         e.preventDefault();
 
         const hotkey = e.code.replace(/key/i, '').toUpperCase() as THotkey;
-        this.focusHandler.move(hotkey, this.direction);
+        this.handlerFocus.move(hotkey, this.direction);
         break;
 
       // Removes focus
       case 'Tab':
-        this.focusHandler.moveToActiveElement();
+        this.handlerFocus.moveToActiveElement();
         break;
       
       // Changes the direction of the focus movement
@@ -60,4 +60,4 @@ class KeyPressHandler implements IKeyPressHandler {
   }
 }
 
-export default KeyPressHandler;
+export default HandlerKeyPress;

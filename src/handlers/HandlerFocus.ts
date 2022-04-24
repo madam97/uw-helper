@@ -1,12 +1,12 @@
-import IFocusHandler from '../interfaces/IFocusHandler';
+import IHandlerFocus from '../interfaces/IHandlerFocus';
 import ISelector from '../interfaces/ISelector';
 import TDirection from '../types/TDirection';
 import THotkey from '../types/THotkey';
-import SelectorHeading from './SelectorHeading';
-import SelectorLandmark from './SelectorLandmark';
-import SelectorLink from './SelectorLink';
+import SelectorHeading from '../selectors/SelectorHeading';
+import SelectorLandmark from '../selectors/SelectorLandmark';
+import SelectorLink from '../selectors/SelectorLink';
 
-class FocusHandler implements IFocusHandler {
+class HandlerFocus implements IHandlerFocus {
   readonly selectors: Record<THotkey, ISelector>;
   readonly querySelector: string;
   focusedElement: Element | null;
@@ -117,4 +117,4 @@ class FocusHandler implements IFocusHandler {
   }
 }
 
-export default FocusHandler;
+export default HandlerFocus;
