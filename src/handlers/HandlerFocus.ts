@@ -102,7 +102,11 @@ class HandlerFocus implements IHandlerFocus {
 
       if (willFocus) {
         (newFocusedElement as HTMLElement).focus();
-        newFocusedElement.scrollIntoView();
+        newFocusedElement.scrollIntoView({
+          behavior: 'auto',
+          block: 'center',
+          inline: 'center'
+        });
       }
     }
 
