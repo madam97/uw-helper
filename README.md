@@ -12,6 +12,12 @@ The website will scroll to the new focused element, and the element will get a b
 
 ## Libary's usage
 
+### Development
+
+- clone the repo files
+- run **npm start** and wait for the dev server to start
+- open the index.html file in your browser
+
 ### Installing
 
 - copy the files from the /dist directory into your website's directory
